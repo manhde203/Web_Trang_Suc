@@ -1,0 +1,91 @@
+<%- include('partials/header') %>
+
+<section class="hero">
+  <div class="container hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow">Bộ sưu tập mới</span>
+      <h1><span>Trang sức bạc</span><span>cho những khoảnh khắc</span><span>đáng nhớ</span></h1>
+      <p>Thiết kế tinh xảo, chất liệu bạc Ý S925 an toàn cho da, đóng gói trong hộp da cao cấp — sẵn sàng làm quà tặng ý nghĩa.</p>
+      <div class="hero-actions">
+        <a href="/danh-muc/vong-lac" class="btn btn-primary">Khám phá ngay</a>
+        <a href="#featured" class="btn btn-ghost">Sản phẩm nổi bật</a>
+      </div>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      <svg viewBox="0 0 320 320" width="100%" height="100%" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="160" cy="160" r="120" stroke="var(--color-gold)" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="160" cy="160" r="90" stroke="var(--color-primary)" stroke-width="1.5" opacity="0.35"/>
+        <path d="M160 70 L220 130 L195 250 H125 L100 130 Z" stroke="var(--color-primary)" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M160 70 L130 130 H190 Z" stroke="var(--color-gold)" stroke-width="2" stroke-linejoin="round"/>
+        <path d="M100 130 H220" stroke="var(--color-gold)" stroke-width="1.5"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="section categories-strip">
+  <div class="container">
+    <h2 class="section-title">Khám phá theo danh mục</h2>
+    <div class="categories-grid">
+      <% categories.forEach(function(cat) { %>
+        <a href="/danh-muc/<%= cat.slug %>" class="category-tile">
+          <span class="category-tile-icon" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 3 L12 21 M3 12 L21 12" opacity="0.4"/></svg>
+          </span>
+          <span><%= cat.name %></span>
+        </a>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="featured">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Mẫu được yêu thích nhất</h2>
+      <a href="/tim-kiem?q=" class="section-link">Xem tất cả &rarr;</a>
+    </div>
+    <div class="product-grid">
+      <% featured.forEach(function(product) { %>
+        <%- include('partials/product-card', { product }) %>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<section class="section band">
+  <div class="container band-inner">
+    <div class="band-item">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2 L15 9 L22 10 L17 15 L18 22 L12 18 L6 22 L7 15 L2 10 L9 9 Z"/></svg>
+      <div><h3>Chất lượng cao cấp</h3><p>Hoàn thiện tỉ mỉ, kiểm định trước khi giao</p></div>
+    </div>
+    <div class="band-item">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 12 a9 9 0 1 0 18 0 a9 9 0 1 0 -18 0"/><path d="M12 7 v5 l3 3"/></svg>
+      <div><h3>10 ngày đổi trả</h3><p>Hỗ trợ lấy hàng tận nơi, thủ tục đơn giản</p></div>
+    </div>
+    <div class="band-item">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4 h16 v12 H4 z"/><path d="M4 8 h16 M9 16 v4 M15 16 v4"/></svg>
+      <div><h3>Đóng gói sang trọng</h3><p>Hộp da cao cấp, sẵn sàng làm quà tặng</p></div>
+    </div>
+    <div class="band-item">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 15 a2 2 0 0 1 -2 2 H7 l-4 4 V5 a2 2 0 0 1 2 -2 h14 a2 2 0 0 1 2 2 z"/></svg>
+      <div><h3>Hỗ trợ tận tâm</h3><p>Tư vấn kỹ càng trước và sau khi mua</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h2 class="section-title">Sản phẩm mới</h2>
+      <a href="/tim-kiem?q=" class="section-link">Xem tất cả &rarr;</a>
+    </div>
+    <div class="product-grid">
+      <% newArrivals.forEach(function(product) { %>
+        <%- include('partials/product-card', { product }) %>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

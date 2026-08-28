@@ -1,0 +1,23 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">Tài khoản của tôi</h1>
+
+    <div class="account-card">
+      <dl class="account-details">
+        <dt>Họ và tên</dt><dd><%= currentUser.full_name %></dd>
+        <dt>Email</dt><dd><%= currentUser.email %></dd>
+        <dt>Số điện thoại</dt><dd><%= currentUser.phone || 'Chưa cập nhật' %></dd>
+        <dt>Ngày tham gia</dt><dd><%= new Date(currentUser.created_at).toLocaleDateString('vi-VN') %></dd>
+      </dl>
+
+      <form action="/dang-xuat" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+        <button type="submit" class="btn btn-outline">Đăng xuất</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

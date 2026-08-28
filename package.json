@@ -1,0 +1,30 @@
+{
+  "name": "lili-jewelry",
+  "version": "1.0.0",
+  "description": "Website trang sức trực tuyến (phong cách LiLi.vn) - Node.js + Express + SQLite",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/db/seed.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.0",
+    "express-mysql-session": "^3.0.3",
+    "express-rate-limit": "^7.4.0",
+    "express-session": "^1.18.0",
+    "express-validator": "^7.2.0",
+    "helmet": "^7.1.0",
+    "mysql2": "^3.24.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

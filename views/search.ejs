@@ -1,0 +1,26 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">
+      <% if (query) { %>Kết quả tìm kiếm cho "<%= query %>"<% } else { %>Tìm kiếm sản phẩm<% } %>
+    </h1>
+
+    <% if (query && products.length === 0) { %>
+      <div class="empty-state">
+        <p>Không tìm thấy sản phẩm phù hợp với từ khóa "<%= query %>".</p>
+        <a href="/" class="btn btn-primary">Về trang chủ</a>
+      </div>
+    <% } else if (products.length > 0) { %>
+      <div class="product-grid">
+        <% products.forEach(function(product) { %>
+          <%- include('partials/product-card', { product }) %>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p class="text-muted">Nhập từ khóa vào ô tìm kiếm phía trên để bắt đầu.</p>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

@@ -1,0 +1,27 @@
+<article class="product-card">
+  <a href="/san-pham/<%= product.slug %>" class="product-thumb theme-<%= product.color_theme %>">
+    <% if (product.sale_price) { %><span class="badge badge-sale">Sale</span><% } %>
+    <% if (product.is_new) { %><span class="badge badge-new">Mới</span><% } %>
+    <svg viewBox="0 0 64 64" width="52" height="52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <circle cx="32" cy="32" r="20" stroke="currentColor" stroke-width="2"/>
+      <path d="M32 16 L44 26 L38 48 H26 L20 26 Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <div class="product-info">
+    <a href="/san-pham/<%= product.slug %>" class="product-name"><%= product.name %></a>
+    <div class="product-price">
+      <% if (product.sale_price) { %>
+        <span class="price-sale"><%= formatVnd(product.sale_price) %></span>
+        <span class="price-old"><%= formatVnd(product.price) %></span>
+      <% } else { %>
+        <span class="price-sale"><%= formatVnd(product.price) %></span>
+      <% } %>
+    </div>
+    <form action="/gio-hang/them" method="post" class="quick-add-form">
+      <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+      <input type="hidden" name="product_id" value="<%= product.id %>" />
+      <input type="hidden" name="redirect_to" value="<%= currentPath %>" />
+      <button type="submit" class="btn btn-outline btn-sm">Thêm vào giỏ</button>
+    </form>
+  </div>
+</article>

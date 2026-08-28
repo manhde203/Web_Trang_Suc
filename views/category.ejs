@@ -1,0 +1,46 @@
+<%- include('partials/header') %>
+
+<div class="container breadcrumb">
+  <a href="/">Trang chủ</a> <span>/</span> <span><%= category.name %></span>
+</div>
+
+<section class="category-spotlight">
+  <div class="container category-spotlight-inner">
+    <div class="category-spotlight-copy">
+      <p class="category-kicker">LiLi Premium Jewelry</p>
+      <h1><%= category.name %><br />cao cấp</h1>
+      <div class="category-rule"></div>
+      <p class="category-lead">Chế tác tinh xảo, thanh lịch và phù hợp cho những khoảnh khắc đáng nhớ.</p>
+      <ul>
+        <li>Tặng kèm hộp bọc da cao cấp</li>
+        <li>Đổi trả dễ dàng trong 10 ngày</li>
+        <li>Bảo hành chính hãng 12 tháng</li>
+      </ul>
+    </div>
+    <div class="category-spotlight-art" aria-hidden="true"><span></span><i></i></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head">
+      <h1 class="section-title"><%= category.name %></h1>
+      <span class="section-meta"><%= products.length %> sản phẩm</span>
+    </div>
+
+    <% if (products.length === 0) { %>
+      <div class="empty-state">
+        <p>Danh mục này hiện chưa có sản phẩm. Vui lòng quay lại sau.</p>
+        <a href="/" class="btn btn-primary">Về trang chủ</a>
+      </div>
+    <% } else { %>
+      <div class="product-grid">
+        <% products.forEach(function(product) { %>
+          <%- include('partials/product-card', { product }) %>
+        <% }); %>
+      </div>
+    <% } %>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

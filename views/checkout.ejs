@@ -1,0 +1,95 @@
+<%- include('partials/header') %>
+
+<section class="section">
+  <div class="container">
+    <h1 class="section-title">Thanh toán</h1>
+
+    <% if (errors && errors.length > 0) { %>
+      <div class="form-errors" role="alert">
+        <ul>
+          <% errors.forEach(function(e) { %><li><%= e.msg %></li><% }); %>
+        </ul>
+      </div>
+    <% } %>
+
+    <div class="cart-layout">
+      <form class="checkout-form" action="/thanh-toan" method="post" novalidate>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+        <section class="checkout-form-section">
+          <div class="checkout-section-heading">
+            <span class="checkout-step">1</span>
+            <div><h2>Thông tin người nhận</h2><p>Thông tin này giúp chúng tôi liên hệ khi giao hàng.</p></div>
+          </div>
+          <div class="form-grid form-grid-two">
+            <div>
+              <label for="full_name">Họ và tên *</label>
+              <input type="text" id="full_name" name="full_name" required minlength="2" maxlength="100" autocomplete="name"
+                     placeholder="Ví dụ: Nguyễn Minh Anh" value="<%= old.full_name || (currentUser ? currentUser.full_name : '') %>" />
+            </div>
+            <div>
+              <label for="phone">Số điện thoại *</label>
+              <input type="tel" id="phone" name="phone" required autocomplete="tel" inputmode="tel"
+                     placeholder="Ví dụ: 0901 234 567" value="<%= old.phone || (currentUser ? currentUser.phone : '') %>" />
+            </div>
+          </div>
+
+          <label for="email">Email *</label>
+          <input type="email" id="email" name="email" required autocomplete="email"
+                 placeholder="email@example.com" value="<%= old.email || (currentUser ? currentUser.email : '') %>" />
+        </section>
+
+        <section class="checkout-form-section delivery-section">
+          <div class="checkout-section-heading">
+            <span class="checkout-step">2</span>
+            <div><h2>Địa chỉ giao hàng</h2><p>Chọn khu vực trước, sau đó điền địa chỉ chi tiết.</p></div>
+          </div>
+
+          <div class="form-grid form-grid-three">
+            <div>
+              <label for="province">Tỉnh / Thành phố *</label>
+              <select id="province" name="province" required autocomplete="address-level1" data-selected="<%= old.province || '' %>">
+                <option value="">Đang tải Tỉnh / Thành phố…</option>
+              </select>
+            </div>
+            <div>
+              <label for="district">Quận / Huyện *</label>
+              <select id="district" name="district" required autocomplete="address-level2" data-selected="<%= old.district || '' %>" disabled>
+                <option value="">Chọn Tỉnh / Thành phố trước</option>
+              </select>
+            </div>
+            <div>
+              <label for="ward">Phường / Xã *</label>
+              <select id="ward" name="ward" required autocomplete="address-level3" data-selected="<%= old.ward || '' %>" disabled>
+                <option value="">Chọn Quận / Huyện trước</option>
+              </select>
+            </div>
+          </div>
+
+          <label for="address">Số nhà, tên đường, tòa nhà *</label>
+          <textarea id="address" name="address" rows="3" required minlength="5" maxlength="300" autocomplete="street-address"
+                    placeholder="Ví dụ: Số 12, ngõ 45 đường Trần Thái Tông"><%= old.address || '' %></textarea>
+          <div class="address-preview" id="addressPreview" aria-live="polite">
+            <span>Địa chỉ giao hàng:</span><strong>Vui lòng chọn khu vực và nhập địa chỉ chi tiết.</strong>
+          </div>
+        </section>
+
+        <button type="submit" class="btn btn-primary btn-block">Đặt hàng (<%= formatVnd(total) %>)</button>
+        <p class="text-muted small">Đây là bản demo — sẽ không có giao dịch thanh toán thật nào được thực hiện.</p>
+      </form>
+
+      <aside class="cart-summary">
+        <h2>Đơn hàng của bạn</h2>
+        <% items.forEach(function(item) { %>
+          <div class="summary-row">
+            <span><%= item.name %> &times; <%= item.quantity %></span>
+            <span><%= formatVnd(item.lineTotal) %></span>
+          </div>
+        <% }); %>
+        <div class="summary-row summary-total"><span>Tổng cộng</span><span><%= formatVnd(total) %></span></div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

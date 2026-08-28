@@ -1,0 +1,42 @@
+<%- include('partials/header') %>
+
+<section class="section auth-section">
+  <div class="container auth-container">
+    <div class="auth-card">
+      <h1>Đăng ký tài khoản</h1>
+      <p class="text-muted">Tạo tài khoản để lưu giỏ hàng và theo dõi đơn hàng.</p>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="form-errors" role="alert">
+          <ul><% errors.forEach(function(e) { %><li><%= e.msg %></li><% }); %></ul>
+        </div>
+      <% } %>
+
+      <form action="/dang-ky" method="post" novalidate>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+        <label for="full_name">Họ và tên</label>
+        <input type="text" id="full_name" name="full_name" required minlength="2" maxlength="100" value="<%= old.full_name || '' %>" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required value="<%= old.email || '' %>" autocomplete="username" />
+
+        <label for="phone">Số điện thoại (tùy chọn)</label>
+        <input type="tel" id="phone" name="phone" value="<%= old.phone || '' %>" />
+
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password" />
+        <p class="field-hint">Tối thiểu 8 ký tự, gồm chữ và số.</p>
+
+        <label for="confirm_password">Xác nhận mật khẩu</label>
+        <input type="password" id="confirm_password" name="confirm_password" required minlength="8" autocomplete="new-password" />
+
+        <button type="submit" class="btn btn-primary btn-block">Đăng ký</button>
+      </form>
+
+      <p class="auth-switch">Đã có tài khoản? <a href="/dang-nhap">Đăng nhập</a></p>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>

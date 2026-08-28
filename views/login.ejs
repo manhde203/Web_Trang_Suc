@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+
+<section class="section auth-section">
+  <div class="container auth-container">
+    <div class="auth-card">
+      <h1>Đăng nhập</h1>
+      <p class="text-muted">Chào mừng bạn quay lại LiLi Jewelry.</p>
+
+      <% if (errors && errors.length > 0) { %>
+        <div class="form-errors" role="alert">
+          <ul><% errors.forEach(function(e) { %><li><%= e.msg %></li><% }); %></ul>
+        </div>
+      <% } %>
+
+      <form action="/dang-nhap" method="post" novalidate>
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required value="<%= old.email || '' %>" autocomplete="username" />
+
+        <label for="password">Mật khẩu</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password" />
+
+        <button type="submit" class="btn btn-primary btn-block">Đăng nhập</button>
+      </form>
+
+      <p class="auth-switch">Chưa có tài khoản? <a href="/dang-ky">Đăng ký ngay</a></p>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/footer') %>
