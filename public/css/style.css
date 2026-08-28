@@ -43,7 +43,23 @@ body {
 img, svg { display: block; max-width: 100%; }
 
 a { color: inherit; text-decoration: none; }
+/* Căn giữa container chứa logo */
+.brand-logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  text-decoration: none;
+}
 
+/* Quan trọng: CSS giúp ảnh logo luôn đúng tỉ lệ */
+.site-logo {
+  max-width: 120px; /* Bạn có thể tăng giảm số này để logo to/nhỏ theo ý muốn */
+  width: 100%;      /* Giúp logo thu nhỏ lại nếu màn hình điện thoại quá bé */
+  height: auto;     /* Lệnh này CỰC KỲ QUAN TRỌNG: Nó giúp ảnh tự động co giãn chiều cao theo chiều rộng, không bao giờ bị méo */
+  object-fit: contain; /* Đảm bảo hình ảnh nằm trọn vẹn trong khung */
+  display: block;
+}
 .container {
   width: 100%;
   max-width: 1200px;

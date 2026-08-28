@@ -4,54 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title><%= title %></title>
-  <meta name="description" content="Minh Nhật Jewelry - Trang sức bạc cao cấp, tinh xảo, sang trọng." />
+  <meta name="description" content="LiLi Jewelry - Trang sức bạc cao cấp, tinh xảo, sang trọng." />
   <link rel="stylesheet" href="/public/css/style.css?v=20260826-4" />
-  
-  <!-- Dán phần CSS của Logo Nhật Minh vào đây -->
-  <style>
-    /* Căn chỉnh bố cục Logo */
-    .brand-logo-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      text-decoration: none;
-      width: fit-content;
-      padding: 10px;
-    }
-
-    .brand-logo-container svg {
-      margin-bottom: 5px;
-    }
-
-    .brand-text-group {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    /* Định dạng chữ Nhật Minh */
-    .brand-name-main {
-      color: #c0392b; 
-      font-family: 'Playfair Display', 'Georgia', serif; 
-      font-size: 32px;
-      font-weight: 700;
-      font-style: italic;
-      line-height: 1;
-      margin-bottom: 5px;
-    }
-
-    /* Định dạng chữ JEWELRY */
-    .brand-name-sub {
-      color: #c0392b; 
-      font-family: 'Montserrat', 'Arial', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 5px; 
-      text-transform: uppercase;
-    }
-  </style>
 </head>
 <body>
   <div class="announce-bar">
@@ -68,37 +22,12 @@
         <span></span><span></span><span></span>
       </button>
 
-      <!-- Chỉ giữ lại phần HTML và SVG của Logo ở vị trí cũ -->
-      <a href="/" class="brand-logo-container">
-        <!-- Mã SVG vẽ hình vỏ sò và ngọc trai màu đỏ -->
-        <svg viewBox="0 0 200 130" width="100" height="65" xmlns="http://www.w3.org/2000/svg">
-          <!-- Vỏ trai ngoài cùng -->
-          <path d="M 25 80 C 0 30 40 5 100 5 C 160 5 200 30 175 80" fill="none" stroke="#c0392b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-          <!-- Vỏ trai giữa -->
-          <path d="M 50 80 C 40 35 70 15 100 15 C 130 15 160 35 150 80" fill="none" stroke="#c0392b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
-          <!-- Vỏ trai trong -->
-          <path d="M 75 80 C 75 45 85 25 100 25 C 115 25 125 45 125 80" fill="none" stroke="#c0392b" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" />
-          
-          <!-- Lượn sóng bên dưới -->
-          <path d="M 20 100 C 60 75 130 85 180 100 C 140 120 70 120 20 100 Z" fill="#c0392b" />
+      <!-- BẮT ĐẦU PHẦN LOGO ẢNH NHẬT MINH -->
+    <a href="/" class="brand-logo-container">
+      <img src="/public/images/logo.png" alt="Nhật Minh Jewelry" class="site-logo">
+    </a>
+      <!-- KẾT THÚC PHẦN LOGO ẢNH NHẬT MINH -->
 
-          <!-- Đế giữ ngọc trai -->
-          <path d="M 55 90 L 80 70 L 100 80 L 120 70 L 145 90 Z" fill="#c0392b" />
-          
-          <!-- Viên ngọc trai -->
-          <circle cx="100" cy="68" r="14" fill="#c0392b" />
-          <!-- Điểm sáng bóng trên viên ngọc -->
-          <circle cx="95" cy="63" r="3.5" fill="#ffffff" />
-        </svg>
-
-        <!-- Phần chữ -->
-        <div class="brand-text-group">
-          <span class="brand-name-main">Nhật Minh</span>
-          <span class="brand-name-sub">JEWELRY</span>
-        </div>
-      </a>
-
-      <!-- Các phần còn lại giữ nguyên -->
       <form class="header-search" action="/tim-kiem" method="get" role="search">
         <input type="search" name="q" placeholder="Tìm kiếm trang sức..." value="<%= typeof query !== 'undefined' ? query : '' %>" aria-label="Tìm kiếm sản phẩm" />
         <button type="submit" aria-label="Tìm kiếm">
@@ -107,12 +36,32 @@
       </form>
 
       <div class="header-actions">
-        <!-- ... Code phần actions giữ nguyên ... -->
+        <% if (currentUser) { %>
+          <a href="/tai-khoan" class="icon-link" title="<%= currentUser.full_name %>">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            <span class="icon-label"><%= currentUser.full_name.split(' ').pop() %></span>
+          </a>
+        <% } else { %>
+          <a href="/dang-nhap" class="icon-link" title="Đăng nhập">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+            <span class="icon-label">Đăng nhập</span>
+          </a>
+        <% } %>
+        <a href="/gio-hang" class="icon-link cart-link" title="Giỏ hàng">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><path d="M6 6L4 3H2"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg>
+          <span class="cart-badge"><%= cartCount %></span>
+        </a>
       </div>
     </div>
 
     <nav class="category-nav" id="categoryNav">
-      <!-- ... Code phần nav giữ nguyên ... -->
+      <div class="container category-nav-inner">
+        <% if (typeof categories !== 'undefined') { %>
+          <% categories.forEach(function(cat) { %>
+            <a href="/danh-muc/<%= cat.slug %>" class="<%= currentPath === '/danh-muc/' + cat.slug ? 'active' : '' %>"><%= cat.name %></a>
+          <% }); %>
+        <% } %>
+      </div>
     </nav>
   </header>
 
