@@ -72,7 +72,7 @@ a { color: inherit; text-decoration: none; }
   mix-blend-mode: multiply; /* Xử lý viền trắng ảnh nếu có */
   
   /* Thông số dành riêng cho điện thoại */
-  max-width: 100px; /* Thu nhỏ logo lại */
+  max-width: 60px; /* Thu nhỏ logo lại */
   margin-bottom: -15px; 
   transform: translateY(10px); /* Dịch xuống một chút thôi */
 }
